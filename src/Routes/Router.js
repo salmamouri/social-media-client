@@ -4,6 +4,7 @@ import Main from '../layout/Main/Main'
 import About from '../Pages/About/About'
 import Home from '../Pages/Home/Home'
 import LogIn from '../Pages/LogIn/LogIn'
+import Media from '../Pages/Media/Media'
 import Message from '../Pages/Message/Message'
 import SignUp from '../Pages/SignUp/SignUp'
 
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/media',
+                element:<Media></Media>
             },
             
         ]
