@@ -23,11 +23,19 @@ import {
 } from "@chakra-ui/icons";
 import About from "../../About/About";
 import { useContext } from "react";
+
+import userEvent from "@testing-library/user-event";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-//   const { user } = useContext(AuthContext);
+     const { user,logOut } = useContext(AuthContext);
+     const handleLogOut = () => {
+        logOut()
+          .then(() => {})
+          .catch((error) => console.error(error));
+      };
+    
 
   return (
     <Box>
@@ -76,7 +84,7 @@ export default function Navbar() {
           direction={"row"}
           spacing={6}
         >
-           (
+          {!user ? (
             <>
               {" "}
               <Button
@@ -103,9 +111,10 @@ export default function Navbar() {
                 Sign Up
               </Button>
             </>
-          )  (
+          ) : (
             <>
-            <Button
+              <Button
+              onClick={handleLogOut}
                 display={{ base: "none", md: "inline-flex" }}
                 fontSize={"sm"}
                 fontWeight={600}
@@ -116,10 +125,10 @@ export default function Navbar() {
                   bg: "pink.300",
                 }}
               >
-               LogOut
+                LogOut
               </Button>
             </>
-          )
+          )}
         </Stack>
       </Flex>
 
