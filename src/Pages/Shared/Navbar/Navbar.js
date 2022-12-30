@@ -7,7 +7,6 @@ import {
   Stack,
   Collapse,
   Icon,
-  Link,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -26,6 +25,7 @@ import { useContext } from "react";
 
 import userEvent from "@testing-library/user-event";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -148,40 +148,23 @@ const DesktopNav = () => {
     <Stack direction={"row"} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
+          
               <Link
-                p={2}
-                href={navItem.href ?? "#"}
+                to={navItem.href ?? "#"}
+              >
+                <Text p={2}
+              
                 fontSize={"sm"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
                   textDecoration: "none",
                   color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
+                }}>
+                  {navItem.label}
+                </Text>
+                
               </Link>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
         </Box>
       ))}
     </Stack>
