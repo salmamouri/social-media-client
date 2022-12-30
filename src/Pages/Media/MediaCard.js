@@ -4,6 +4,12 @@ import {BiShare,BiLike,BiChat} from 'react-icons/bi'
 
 export default function MediaCard({post}) {
    const {name,like,comment}=post;
+
+   const increaseLike = id => {
+    const url = `http://localhost:5000/api/posts/${id}`
+    const post = 1
+   }
+
   return (
     <div>
         <Card maxW='md'>
