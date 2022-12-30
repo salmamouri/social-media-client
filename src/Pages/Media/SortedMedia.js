@@ -2,7 +2,7 @@ import { Grid } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import MediaCard from './MediaCard';
 
-export default function MediaData() {
+function SortedMedia() {
     const [posts,setPosts]= useState([]);
 
     useEffect(()=>{
@@ -13,11 +13,14 @@ export default function MediaData() {
           setPosts(data)
         })
     },[])
-   
+
+    let sortedPosts = posts.sort((p1, p2) => (p1.likes < p2.price) ? 1 : (p1.likes > p2.likes) ? -1 : 0)
+
+    console.log("sorted posts: ", sortedPosts)
   return (
     <Grid templateColumns='repeat(2, 1fr)'>
         {
-            posts.map(post=><MediaCard
+            sortedPosts.map(post=><MediaCard
              key={post._id}
              post={post}
              >
@@ -27,3 +30,5 @@ export default function MediaData() {
     </Grid>
   )
 }
+
+export default SortedMedia

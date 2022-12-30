@@ -1,20 +1,19 @@
-import { Avatar, Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Text,CardFooter } from '@chakra-ui/react';
+import {  Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Text,CardFooter, HStack } from '@chakra-ui/react';
 import React from 'react'
 import {BiShare,BiLike,BiChat} from 'react-icons/bi'
 
 export default function MediaCard({post}) {
-   const {name,details,like,comment}=post;
+   const {name,like,comment}=post;
   return (
     <div>
         <Card maxW='md'>
   <CardHeader>
     <Flex spacing='4'>
       <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-        <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
 
         <Box>
           <Heading size='sm'>{name}</Heading>
-          <Text>Creator, Chakra UI</Text>
+          <Text>{post?.user}</Text>
         </Box>
       </Flex>
       <IconButton
@@ -27,7 +26,7 @@ export default function MediaCard({post}) {
   </CardHeader>
   <CardBody>
     <Text>
-     {details}
+     {post?.post}
     </Text>
   </CardBody>
   {/* <Image
@@ -45,9 +44,12 @@ export default function MediaCard({post}) {
       },
     }}
   >
+    <HStack>
     <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
-      {like}
+      {like} {" "} 
     </Button>
+    <Text>{post?.likes}</Text>
+    </HStack>
     <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
       {comment}
     </Button>
