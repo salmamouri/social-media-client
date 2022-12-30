@@ -1,13 +1,22 @@
 import {  Box, Button, Card, CardBody, CardHeader, Flex, Heading, IconButton, Text,CardFooter, HStack } from '@chakra-ui/react';
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import {BiShare,BiLike,BiChat} from 'react-icons/bi'
 
 export default function MediaCard({post}) {
    const {name,like,comment}=post;
+   const [media, setMedia] = useState({})
+
 
    const increaseLike = id => {
-    const url = `http://localhost:5000/api/posts/${id}`
-    const post = 1
+
+    const postObject = {
+      likes: post.likes + 1,
+    };
+
+    axios
+      .put(`http://localhost:5000/api/posts/${id}`, postObject)
+      .then((response) => console.log(response.data));
    }
 
   return (
@@ -51,16 +60,19 @@ export default function MediaCard({post}) {
     }}
   >
     <HStack>
-    <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
+    <Button onClick={()=> increaseLike(post._id)} flex='1' variant='ghost' leftIcon={<BiLike />}>
       {like} {" "} 
     </Button>
     <Text>{post?.likes}</Text>
     </HStack>
+    <HStack>
     <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
       {comment}
     </Button>
-    <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
-      Share
+    <Text>0</Text>
+    </HStack>
+    <Button size={"sm"} variant='ghost' leftIcon={<BiShare />}>
+      Details
     </Button>
   </CardFooter>
 </Card>

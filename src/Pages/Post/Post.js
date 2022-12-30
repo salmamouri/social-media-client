@@ -35,15 +35,15 @@ export default function Post() {
     setValue("")
   };
   return (
-    <VStack>
+    <VStack align={"left"} p={6}>
       <Textarea
-        w="800px"
-        placeholder="Here is a sample placeholder"
+      maxW={"600px"}
+        placeholder="Write your post here"
         value={value}
         onChange={handleInputChange}
       />
 
-      <HStack align="right">
+      <HStack maxW={"600px"} align="right" justify={"space-between"}>
         <input type="file"></input>
         <Button onClick={addPost}>Submit</Button>
       </HStack>

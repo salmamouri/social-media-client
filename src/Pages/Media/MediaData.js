@@ -15,7 +15,7 @@ export default function MediaData() {
     },[])
    
   return (
-    <Grid templateColumns='repeat(2, 1fr)'>
+    <Grid py={4} gap={6} templateColumns='repeat(2, 1fr)'>
         {
             posts.map(post=><MediaCard
              key={post._id}
