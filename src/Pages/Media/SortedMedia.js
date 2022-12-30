@@ -18,9 +18,9 @@ function SortedMedia() {
 
     console.log("sorted posts: ", sortedPosts)
   return (
-    <Grid templateColumns='repeat(2, 1fr)'>
+    <Grid templateColumns='repeat(2, 1fr)' gap={4}>
         {
-            sortedPosts.map(post=><MediaCard
+            sortedPosts.slice(0, 3).map(post=><MediaCard
              key={post._id}
              post={post}
              >
